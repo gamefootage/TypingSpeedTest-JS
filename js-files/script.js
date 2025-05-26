@@ -6,7 +6,7 @@ var samples = [
   "I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.",
 ];
 var infinityPara =
-  "The Patronus is the most famous defensive charm. The aim is to produce a protector, which takes the form of an animal. The exact form of the Patronus will not be apparent until the spell has been successfully cast. It is the only spell effective against Dementors. The majority of witches and wizards are unable to produce Patronuses and to do so is generally considered a mark of superior magical ability.Since he had last seen it, the gargoyle guarding the entrance to the headmaster’s study had been knocked aside; it stood lopsided, looking a little punch-drunk, and Harry wondered whether it would be able to distinguish passwords anymore.They clambered over him and onto the spiral stone staircase that moved slowly upward like an escalator. Harry pushed open the door at the top.He had one, brief glimpse of the stone Pensieve on the desk where he had left it, and then an earsplitting noise made him cry out, thinking of curses and returning Death Eaters and the rebirth of Voldemort.I need the place where everything is hidden, Harry begged of it inside his head, and the door materialized on their third run past.I’m putting the Elder Wand, back where it came from. It can stay there. If I die a natural death like Ignotus, its power will be broken, won’t it? The previous master will never have been defeated. That’ll be the end of it.";
+  "Museum De Bastei is the vantage point from which we view the world around us. In this special location on the Waal River, the river, cultural history, and nature converge to form a unique heritage of the river region. We make this past tangible through multi-sensory presentations on natural history, architectural history, and archaeology. We make the present visible with our nature collection and activities. We make the future livable as a connector in nature and sustainability education. In this way, we inspire a broad audience to a richer connection with their living environment. Museum De Bastei is a contemporary museum in a unique, historical location. In this special place, the river, (architectural) history, and nature come together, forming an age-old and inspiring heritage of the river region. In the museum, visitors discover stories about life in, around, and on the Waal River near Nijmegen, viewed from the location of the 16th-century bastion. By fully opening the old defense tower and layered archaeological excavations to the public, we make this past tangible. We bring nature to visitors to admire up close, thus making visible what lives in our region. The compact, experiential, and interactive exhibitions ensure a unique discovery of Nijmegen's heritage. This makes the museum an accessible family activity and very suitable for a day trip to Nijmegen. A richer connection with your living environment begins with attention and wonder for the world around you. In our educational programs and activities, we make people aware of their own living environment and the role they themselves play in it. We inspire and activate participants, giving them a perspective for action. Out into the city, into nature, in search of what lives. Into the neighborhoods, reaching residents and schools. In this way, De Bastei plants seeds for a conscious attitude towards the living environment and its future. We consider this an important task and are strongly committed to it.";
 
 localStorage.setItem("minuteValue", 1);
 
@@ -14,6 +14,7 @@ localStorage.setItem("minuteValue", 1);
 
 // Setting up the timer-mode paragraph
 document.querySelector(".infinity-para").innerText = infinityPara;
+document.querySelector(".reset-time-div").style.visibility = "hidden";
 
 // Hiding 1min, 2min, 3min btns when the btns loose focus and setting to default view
 function manageBtns(e) {
@@ -29,36 +30,36 @@ function manageBtns(e) {
     });
   }
 }
-window.addEventListener("click", (e) => {
-  manageBtns(e);
-});
+// window.addEventListener("click", (e) => {
+//   manageBtns(e);
+// });
 
 // Handles the visibility of Buttons for Time Mode and Infinity Mode
-function toggleVisibility() {
-  var options = document
-    .querySelector(".test-options")
-    .querySelectorAll(".option");
-  options.forEach((option) => {
-    var present = option.classList.contains("hide");
-    if (present == true) {
-      option.classList.remove("hide");
-      document.querySelector(".show-time-modes").classList.add("selected");
-      if (window.innerWidth <= 800) {
-        document.querySelector(".infinity-mode").classList.add("hide");
-      }
-    } else {
-      option.classList.add("hide");
-      document.querySelector(".show-time-modes").classList.remove("selected");
-      if (window.innerWidth <= 800) {
-        document.querySelector(".infinity-mode").classList.remove("hide");
-      }
-    }
-  });
-}
+// function toggleVisibility() {
+//   var options = document
+//     .querySelector(".test-options")
+//     .querySelectorAll(".option");
+//   options.forEach((option) => {
+//     var present = option.classList.contains("hide");
+//     if (present == true) {
+//       option.classList.remove("hide");
+//       document.querySelector(".show-time-modes").classList.add("selected");
+//       if (window.innerWidth <= 800) {
+//         document.querySelector(".infinity-mode").classList.add("hide");
+//       }
+//     } else {
+//       option.classList.add("hide");
+//       document.querySelector(".show-time-modes").classList.remove("selected");
+//       if (window.innerWidth <= 800) {
+//         document.querySelector(".infinity-mode").classList.remove("hide");
+//       }
+//     }
+//   });
+// }
 
-document
-  .querySelector(".show-time-modes")
-  .addEventListener("click", toggleVisibility);
+// document
+//   .querySelector(".show-time-modes")
+//   .addEventListener("click", toggleVisibility);
 
 // Updates the clock for time mode when child buttons of Time Mode are clicked (1min, 2min, 3min)
 var updateClock = function (time) {
@@ -71,27 +72,27 @@ var updateClock = function (time) {
   localStorage.setItem("minuteValue", time);
   setDefault();
 };
-document.querySelector("#minute1").addEventListener(
-  "click",
-  () => {
-    updateClock(1);
-  },
-  false
-);
-document.querySelector("#minute2").addEventListener(
-  "click",
-  () => {
-    updateClock(2);
-  },
-  false
-);
-document.querySelector("#minute3").addEventListener(
-  "click",
-  () => {
-    updateClock(3);
-  },
-  false
-);
+// document.querySelector("#minute1").addEventListener(
+//   "click",
+//   () => {
+//     updateClock(1);
+//   },
+//   false
+// );
+// document.querySelector("#minute2").addEventListener(
+//   "click",
+//   () => {
+//     updateClock(2);
+//   },
+//   false
+// );
+// document.querySelector("#minute3").addEventListener(
+//   "click",
+//   () => {
+//     updateClock(3);
+//   },
+//   false
+// );
 
 // Function for setting default values(clearing all the things up if written any)
 function setDefault() {
@@ -109,6 +110,7 @@ function setDefault() {
     .querySelector(".time-mode-wrapper")
     .querySelector(".type-area").disabled = false;
   document.querySelector(".type-here-div").style.visibility = "visible";
+  document.querySelector(".reset-time-div").style.visibility = "hidden";
   document.querySelector(".error-div").querySelector(".error").innerText = "";
   modifiedpara = infinityPara;
   minusString = "";
@@ -158,6 +160,7 @@ document.querySelector(".type-area").addEventListener("focus", () => {
   if (typingStarted == false) {
     typingStarted = true;
     document.querySelector(".type-here-div").style.visibility = "hidden";
+    document.querySelector(".reset-time-div").style.visibility = "visible";
     runTimer();
   }
 });
@@ -167,6 +170,7 @@ function resetTimeMode() {
   typingStarted = false;
   clearInterval(ticktock);
   document.querySelector(".type-here-div").style.visibility = "visible";
+  document.querySelector(".reset-time-div").style.visibility = "hidden";
   document.querySelector(".para-type").innerHTML = infinityPara;
   var textarea = document.querySelector(".type-area");
   textarea.style.borderColor = "#A1A1AA";
@@ -376,28 +380,28 @@ function clearLoader() {
 // INFINITY MODE SCRIPTS
 
 // Assigning random sample as paragraph to User
-var random = Math.floor(Math.random() * 5 + 1) - 1;
-document.querySelector(".infinity-user-type").innerText = samples[random];
+// var random = Math.floor(Math.random() * 5 + 1) - 1;
+// document.querySelector(".infinity-user-type").innerText = samples[random];
 
 // Set to Default values when the INFINITY MODE btn is clicked
-document.querySelector("#infinity-mode-btn").addEventListener("click", () => {
-  setDefault();
-  resetTimeMode();
-});
+// document.querySelector("#infinity-mode-btn").addEventListener("click", () => {
+//   setDefault();
+//   resetTimeMode();
+// });
 
 // When the User clicks on any sample in the sample container, the para is updated in the Infinity Section
-document
-  .querySelector(".sample-container")
-  .addEventListener("click", (callback) => {
-    document.querySelector(".infinity-user-type").innerText =
-      callback.target.innerText;
-    for (i = 0; i < samples.length; i++) {
-      if (samples[i] == callback.target.innerText) {
-        random = i;
-      }
-    }
-    reset();
-  });
+// document
+//   .querySelector(".sample-container")
+//   .addEventListener("click", (callback) => {
+//     document.querySelector(".infinity-user-type").innerText =
+//       callback.target.innerText;
+//     for (i = 0; i < samples.length; i++) {
+//       if (samples[i] == callback.target.innerText) {
+//         random = i;
+//       }
+//     }
+//     reset();
+//   });
 
 // Invoked when Start btn is clicked
 function start() {
@@ -428,8 +432,8 @@ function reset() {
   document.querySelector(".infinity-user-type").innerText = samples[random];
 }
 
-document.querySelector(".start").addEventListener("click", start);
-document.querySelector(".reset").addEventListener("click", reset);
+// document.querySelector(".start").addEventListener("click", start);
+// document.querySelector(".reset").addEventListener("click", reset);
 
 var min = 0;
 var sec = 0;
@@ -489,7 +493,7 @@ async function checkUserInputInfinity() {
     await myPromise.then((result) => {
       clearLoader();
     });
-    document.querySelector("#infinity-mode").scrollIntoView();
+    // document.querySelector("#infinity-mode").scrollIntoView();
     result();
   } else if (para.includes(userInput)) {
     document.querySelector(".infinity-type-area").style.borderColor = "#F97316";
@@ -510,9 +514,9 @@ async function checkUserInputInfinity() {
   }
 }
 
-document
-  .querySelector(".infinity-type-area")
-  .addEventListener("input", checkUserInputInfinity);
+// document
+//   .querySelector(".infinity-type-area")
+//   .addEventListener("input", checkUserInputInfinity);
 
 // Calculates result for Infinity Section
 function result() {
