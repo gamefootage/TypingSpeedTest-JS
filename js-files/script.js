@@ -254,7 +254,7 @@ function handleSpace() {
 
 // Space was being handled fine using keyup but was not being supported by android. So I handled space using input event by comparing the last char entered
 // The below script is the original script working fine for browser but not for android
-document.querySelector(".type-area").onkeydown = (e) => {
+// document.querySelector(".type-area").onkeydown = (e) => {
   // if(e.which === 32 || e.key === 'Space'){
   //     alert("Space Pressed")
   //     userType = document.querySelector(".type-area").value // data typed by user
@@ -275,7 +275,7 @@ document.querySelector(".type-area").onkeydown = (e) => {
   //     }
   // }
   // // To prevent the correct string entered from being deleted
-};
+// };
 
 // Handling Enter key and backspace key
 // Backspace working fine for window browsers. Creating a little trouble for android.
