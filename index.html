@@ -86,7 +86,7 @@
         <div class="result grid-container">
           <div class="time one result-data" id="clock-time-mode">
             <p>
-              1 <span class="mini"><br />min</span>
+              <span id="timer-second" class="sec">60</span> <span class="mini"><br />secs</span>
             </p>
           </div>
           <div class="wpm grid two result-data" id="timer-wpm">0</div>
@@ -99,21 +99,24 @@
           <div class="accuracy-head seven result-head">% accuracy</div>
         </div>
         <p class="para-type infinity-para"></p>
-        <div class="timer min1 timer-adjust">
+        <!-- <div class="timer min1 timer-adjust">
           <span class="min" id="timer-minute">01</span>
           <bold>:</bold>
           <span class="sec" id="timer-second">00</span>
-        </div>
+        </div> -->
         
         
-        <div class="btn-container no-center reset-time-div">
-            <button class="btn reset-time-mode" type="reset">Reset</button>
+        <div class="btn-container">
+            <div class="type-here-div">
+              <span class="type-here-anim">Start Typing</span>
+              <span class="triangle-down"></span>
+            </div>
+
+            <div class="reset-time-div">
+                <button class="btn reset-time-mode" type="reset">Reset</button>
+            </div>
         </div>
         
-        <div class="type-here-div">
-          <span class="type-here-anim">Start Typing</span>
-          <span class="triangle-down"></span>
-        </div>
 
 
         <textarea

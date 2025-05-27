@@ -119,31 +119,24 @@ function setDefault() {
 }
 
 var minuteValue = 1;
-var secondValue = 0;
+var secondValue = 60;
 var ticktock;
 // Countdown timer for Time Mode
 function countdownTimer() {
   if (secondValue == 0) {
-    minuteValue = minuteValue - 1;
-    secondValue = 59;
+    secondValue = 60;
   } else {
     secondValue = secondValue - 1;
   }
 
-  if (secondValue < 10 && minuteValue < 10) {
-    document.querySelector(".min").innerText = "0" + minuteValue;
+  if (secondValue < 10) {
+    // document.querySelector(".min").innerText = "0" + minuteValue;
     document.querySelector(".sec").innerText = "0" + secondValue;
-  } else if (secondValue < 10 && minuteValue >= 10) {
-    document.querySelector(".min").innerText = minuteValue;
-    document.querySelector(".sec").innerText = "0" + secondValue;
-  } else if (minuteValue < 10 && secondValue >= 10) {
-    document.querySelector(".min").innerText = "0" + minuteValue;
-    document.querySelector(".sec").innerText = secondValue;
   } else {
-    document.querySelector(".min").innerText = minuteValue;
+    // document.querySelector(".min").innerText = minuteValue;
     document.querySelector(".sec").innerText = secondValue;
   }
-  if (minuteValue == 0 && secondValue == 0) {
+  if (secondValue == 0) {
     clearInterval(ticktock);
     timeUp();
   }
@@ -176,17 +169,17 @@ function resetTimeMode() {
   textarea.style.borderColor = "#A1A1AA";
   textarea.value = "";
   textarea.disabled = false;
-  minuteValue = localStorage.getItem("minuteValue");
-  if (minuteValue == undefined || minuteValue == null) {
-    minuteValue = 1;
-  }
-  secondValue = 0;
-  document.querySelector(".min1").querySelector(".min").innerText =
-    "0" + minuteValue.toString();
-  document.querySelector(".min1").querySelector(".sec").innerText = "00";
-  document.querySelector(
-    "#clock-time-mode"
-  ).innerHTML = `<p>${minuteValue} <span class="mini"><br>min</span></p>`;
+//   minuteValue = localStorage.getItem("minuteValue");
+//   if (minuteValue == undefined || minuteValue == null) {
+//     minuteValue = 1;
+//   }
+  secondValue = 1;
+//   document.querySelector(".min1").querySelector(".min").innerText =
+//     "0" + minuteValue.toString();
+  document.querySelector(".sec").innerText = secondValue.toString();
+//   document.querySelector(
+//     "#clock-time-mode"
+//   ).innerHTML = `<p>${minuteValue} <span class="mini"><br>min</span></p>`;
   document.querySelector(".error-div").querySelector(".error").innerText = "";
   document.querySelector("#timer-wpm").innerText = "0";
   document.querySelector("#timer-cpm").innerText = "0";
@@ -327,7 +320,8 @@ function calculateAccuracy(correctChars, totalChars) {
   if (totalChar == undefined) {
     totalChar = totalChars;
   }
-  return (correctChar / totalChar) * 100;
+   
+  return totalChars == 0 ? 0 : (correctChar / totalChar) * 100;
 }
 
 // After the designated time is UP, handles visibility of components, Loader, and displays result
@@ -365,10 +359,10 @@ async function timeUp() {
     total,
     time
   ).toFixed(2);
-  document.querySelector("#timer-accuracy").innerText = calculateAccuracy(
+  document.querySelector("#timer-accuracy").innerText = (calculateAccuracy(
     correct,
     total
-  ).toFixed(2);
+  ).toFixed(2) ?? 0);
 }
 
 // Hide the loader after 5 seconds
