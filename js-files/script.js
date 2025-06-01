@@ -173,7 +173,7 @@ function resetTimeMode() {
 //   if (minuteValue == undefined || minuteValue == null) {
 //     minuteValue = 1;
 //   }
-  secondValue = 1;
+  secondValue = 60;
 //   document.querySelector(".min1").querySelector(".min").innerText =
 //     "0" + minuteValue.toString();
   document.querySelector(".sec").innerText = secondValue.toString();
